@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>gz-demo-math</name>
+  <version>1.0.0</version>
+  <description>
+    Trivial consumer of Gazebo Math. Exists to prove that a distribution with
+    no ROS lineage can resolve Gazebo dependencies through a REP-2015
+    extension of Gazebo Jetty.
+  </description>
+  <maintainer email="jrivero@honurobotics.com">Jose Luis Rivero</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>cmake</buildtool_depend>
+
+  <!-- gz-math is the package name in Jetty's distribution file, NOT a rosdep
+       key. Depending on it is what sends the rosdistro dependency walker
+       through the extended parent distribution, which is the entire point of
+       this package. Naming a rosdep key here instead would resolve to a deb
+       and never touch the extension. -->
+  <depend>gz-math</depend>
+
+  <test_depend>gtest</test_depend>
+
+  <export>
+    <build_type>cmake</build_type>
+  </export>
+</package>
