@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>gz-demo-math</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <description>
     Trivial consumer of Gazebo Math. Exists to prove that a distribution with
     no ROS lineage can resolve Gazebo dependencies through a REP-2015
@@ -20,6 +20,14 @@
        and never touch the extension. -->
   <depend>gz-math</depend>
 
+  <!-- gtest is declared as a BUILD dependency, not only a test dependency, and
+       that is deliberate. A ros_buildfarm ci job runs build_and_install with
+       only install_list_build.txt installed, while passing the build file's
+       build_tool_args (here -DBUILD_TESTING=ON) to that same phase. A
+       test_depend would therefore be missing exactly when CMake configures the
+       test tree, which is how build 1 of the demo job failed. Keeping the
+       test_depend as well states the honest intent. -->
+  <build_depend>gtest</build_depend>
   <test_depend>gtest</test_depend>
 
   <export>

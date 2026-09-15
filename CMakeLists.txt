@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22.1 FATAL_ERROR)
-project(gz-demo-math VERSION 1.0.0 LANGUAGES CXX)
+project(gz-demo-math VERSION 1.0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -9,9 +9,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # gz-math::gz-math (headers live under include/gz/math9, but the CMake
 # package/target names carry no suffix). Verified via
 # `dpkg -L libgz-math9-dev | grep cmake` inside the Jetty (ubuntu:resolute)
-# container. The rosdistro package name in the distribution file is also
-# unversioned (gz-math) but is a separate namespace from this CMake name;
-# they happen to coincide here.
+# container, and confirmed again against a gz-math built from source in a
+# buildfarm workspace, where no deb is involved at all: the unversioned name
+# comes from gz-cmake's install rules, not from Debian packaging.
+#
+# The rosdistro package name in the distribution file is also unversioned
+# (gz-math) but is a separate namespace from this CMake name; they happen to
+# coincide here.
 #
 # Because the CMake package name carries no major version, an unversioned
 # find_package(gz-math) would silently accept any Gazebo collection, not just
